@@ -1,0 +1,1 @@
+{"version":3,"file":"dl_win.js","mappings":";;;;;;;AAAA,yBAAyB;AACzB,OAAO,CAAC,GAAG,CAAC,mCAAmC,CAAC;AAChD,MAAM,CAAC,KAAK,EAAE","sources":["webpack://webclassext/./src/web-cls-ext/dl_win.ts"],"sourcesContent":["// import $ from 'jquery'\r\nconsole.log('WebClass Ext alpha 1.1 - download')\r\nwindow.close()\r\n"],"names":[],"sourceRoot":""}

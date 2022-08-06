@@ -1,0 +1,5 @@
+node_modules/
+.vscode/
+store_contents/
+test.http
+memo.txt

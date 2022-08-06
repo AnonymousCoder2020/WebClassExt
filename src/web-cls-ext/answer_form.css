@@ -1,0 +1,6 @@
+.answer-form-container,
+table.qstnoptions,
+table[id^='id_text__'],
+textarea[id^='text_text__'] {
+  width: 100%;
+}

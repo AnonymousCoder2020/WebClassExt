@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "es2019",
+    "strict": true,
+    "module": "esnext",
+    "outDir": "./dist/",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "jsx": "react-jsx",
+    "lib": ["es2020.string", "esnext", "dom", "dom.iterable"],
+    "paths": {
+      "~/*": ["src/*"],
+      "~comp/*": ["src/comp/*"],
+      "~lib/*": ["src/lib/*"],
+      "*": ["node_modules/@types/*", "types/*"],
+      "~debug": ["src/lib/debug.ts"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ],
+    "experimentalDecorators": true,
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["types/*", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/popup/_index.js"],
+  "exclude": ["node_modules", "dist"]
+}

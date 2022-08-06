@@ -1,0 +1,14 @@
+#NewestInformations li {
+  overflow: auto;
+}
+#NewestInformations li .data {
+  margin-top: initial;
+}
+
+.row > *:first-child > * + * {
+  margin-top: 1rem;
+}
+
+#courses_list_left li {
+  list-style-type: none;
+}
