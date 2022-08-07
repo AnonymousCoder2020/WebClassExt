@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "WebClass Ext",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "WebClassの拡張",
   "content_scripts": [
     {
@@ -16,7 +16,7 @@
     { "matches": ["https://ed24lb.osaka-sandai.ac.jp/webclass/*_frame.php*"], "js": ["download.js"] },
     { "matches": ["https://ed24lb.osaka-sandai.ac.jp/webclass/show_frame.php*"], "js": ["skip.js"] },
     { "matches": ["https://j29-asw.osaka-sandai.ac.jp/uniasv2/UnSSOLoginControlFree"], "js": ["syllabus.js"] },
-    { "matches": ["https://j29-asw.osaka-sandai.ac.jp/uniasv2/AGA130PSC01EventAction.do"], "js": ["syllabus_ls.js"] }
+    { "matches": ["https://j29-asw.osaka-sandai.ac.jp/uniasv2/AGA130PSC01EventAction.do*"], "js": ["syllabus_ls.js"] }
   ],
   "permissions": ["storage"],
   "content_security_policy": {
