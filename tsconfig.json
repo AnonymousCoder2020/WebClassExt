@@ -27,6 +27,6 @@
     "experimentalDecorators": true,
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["types/*", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/popup/_index.js"],
+  "include": ["types/*", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/popup/_index.js", "backup/cource.ts"],
   "exclude": ["node_modules", "dist"]
 }

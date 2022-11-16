@@ -2,9 +2,9 @@ const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineChunkHtmlPlugin = require('inline-chunk-html-plugin')
 
-const project = ['web-cls-ext', 'img90', 'ng-comment'][0]
+const project = ['web-cls-ext'][0]
 //             0        1         2         3           4            5       6             7            8
-const page = ['index', 'dl_win', 'cource', 'download', 'timetable', 'skip', 'answer_form', 'syllabus', 'syllabus_ls'][8]
+const page = ['index', 'dl_win', 'course', 'download', 'timetable', 'skip', 'answer_form', 'syllabus', 'syllabus_ls'][7]
 const ext = ['ts', 'js'][0]
 const html = 0
 

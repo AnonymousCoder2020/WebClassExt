@@ -58,7 +58,10 @@ $(() => {
       // シラバスへのリンク
       liVal.push(
         $('<a>')
-          .attr({ href: 'https://j29-asw.osaka-sandai.ac.jp/uniasv2/UnSSOLoginControlFree', target: '_blank' })
+          .attr({
+            href: 'https://j04-asw.osaka-sandai.ac.jp/uniasv2/AGA130.do?REQ_PRFR_MNU_ID=MSTD2005',
+            /*前のURL'https://j29-asw.osaka-sandai.ac.jp/uniasv2/UnSSOLoginControlFree'*/ target: '_blank',
+          })
           .text('シラバス')
           .on('click', () => {
             webClsExtBrowserStorage.set({

@@ -38,7 +38,7 @@
     "arrive": "^2.4.1",
     "crx-hotreload": "^1.0.6",
     "dayjs": "^1.11.1",
-    "jquery": "^3.6.0",
+    "jquery": "^3.6.1",
     "lodash-es": "^4.17.21",
     "next-ts-utility": "github:AnonymousCoder2020/next-ts-utility",
     "react": "^18.1.0",

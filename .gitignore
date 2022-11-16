@@ -3,3 +3,4 @@ node_modules/
 store_contents/
 test.http
 memo.txt
+backup/
