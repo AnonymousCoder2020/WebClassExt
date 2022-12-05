@@ -16,16 +16,19 @@ $(() => {
     if (!$links[0] || links.every(link => completeLinkEls.some(el => link === el))) return
     completeLinkEls.push(...links)
     // クリックされたらダウンロード開始
-    $links.on('click', async e => {
-      e.preventDefault()
-      const href = $(e.target).attr('href')
-      if (!href) return extWarn(e.target, `のhrefプロパティが見つかりませんでした。`)
+    links.forEach(async link => {
+      const $link = $(link)
+      const href = $link.attr('href')
+      const txt = $link.text()
+      if (!href) return extWarn(link, `のhrefプロパティが見つかりませんでした。`)
       const html = await (await fetch(regularUrl(href))).text()
       const urlHtml = html.match(/(?<=<a href='\/).+?(?='>)/im)?.[0]
       if (!urlHtml) return extWarn(href, 'にURLが記載されていませんでした。')
-      $('<a>')
+      const newLink = $('<a>')
+        .text(txt)
         .attr({ href: 'https://ed24lb.osaka-sandai.ac.jp/' + unescapeHTML(urlHtml), target: '_blank' })[0]
-        .click()
+      $(link).after(newLink)
+      link.remove()
     })
   }
   dl()

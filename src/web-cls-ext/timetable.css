@@ -12,3 +12,8 @@
   overflow-wrap: break-word;
   overflow: auto;
 }
+
+#cource-table .syllabus-link {
+  background-color: #eaf4fc;
+  text-decoration: none;
+}

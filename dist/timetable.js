@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#cource-table {\r\n  table-layout: fixed;\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  border: 1px solid currentColor;\r\n}\r\n\r\n#cource-table td {\r\n  border: 1px solid currentColor;\r\n  padding: 0.5rem 1rem;\r\n  height: 5rem;\r\n  overflow-wrap: break-word;\r\n  overflow: auto;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/web-cls-ext/timetable.css"],"names":[],"mappings":"AAAA;EACE,mBAAmB;EACnB,WAAW;EACX,yBAAyB;EACzB,8BAA8B;AAChC;;AAEA;EACE,8BAA8B;EAC9B,oBAAoB;EACpB,YAAY;EACZ,yBAAyB;EACzB,cAAc;AAChB","sourcesContent":["#cource-table {\r\n  table-layout: fixed;\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  border: 1px solid currentColor;\r\n}\r\n\r\n#cource-table td {\r\n  border: 1px solid currentColor;\r\n  padding: 0.5rem 1rem;\r\n  height: 5rem;\r\n  overflow-wrap: break-word;\r\n  overflow: auto;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "#cource-table {\r\n  table-layout: fixed;\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  border: 1px solid currentColor;\r\n}\r\n\r\n#cource-table td {\r\n  border: 1px solid currentColor;\r\n  padding: 0.5rem 1rem;\r\n  height: 5rem;\r\n  overflow-wrap: break-word;\r\n  overflow: auto;\r\n}\r\n\r\n#cource-table .syllabus-link {\r\n  background-color: #eaf4fc;\r\n  text-decoration: none;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/web-cls-ext/timetable.css"],"names":[],"mappings":"AAAA;EACE,mBAAmB;EACnB,WAAW;EACX,yBAAyB;EACzB,8BAA8B;AAChC;;AAEA;EACE,8BAA8B;EAC9B,oBAAoB;EACpB,YAAY;EACZ,yBAAyB;EACzB,cAAc;AAChB;;AAEA;EACE,yBAAyB;EACzB,qBAAqB;AACvB","sourcesContent":["#cource-table {\r\n  table-layout: fixed;\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  border: 1px solid currentColor;\r\n}\r\n\r\n#cource-table td {\r\n  border: 1px solid currentColor;\r\n  padding: 0.5rem 1rem;\r\n  height: 5rem;\r\n  overflow-wrap: break-word;\r\n  overflow: auto;\r\n}\r\n\r\n#cource-table .syllabus-link {\r\n  background-color: #eaf4fc;\r\n  text-decoration: none;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12915,7 +12915,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
         .get()
         .forEach(li => {
         var _a, _b, _c, _d;
-        const { week, period, title, name, semester } = (_c = (_b = (_a = li.textContent) === null || _a === void 0 ? void 0 : _a.match(/» (?<week>[月火水木金土日])(?<period>\d)(?<semester>[前後]) (?<title>[^\d\s\/０-９]+)[\S]* [a-zA-Z]+ (?<name>(?:　|[^\d\s\/0-9０-９])+)/)) === null || _b === void 0 ? void 0 : _b.groups) !== null && _c !== void 0 ? _c : {};
+        const { week, period, title, name, semester } = (_c = (_b = (_a = li.textContent) === null || _a === void 0 ? void 0 : _a.match(/»[\s　](?<week>[月火水木金土日])(?<period>\d)(?<semester>[前後])[\s　](?<title>[^\d\s\/０-９]+)[\S]*[\s　][a-zA-Z]+[\s　](?<name>(?:　|[^\d\s\/0-9０-９])+)/)) === null || _b === void 0 ? void 0 : _b.groups) !== null && _c !== void 0 ? _c : {};
         const weekIdx = weeks.findIndex(w => w === week);
         if (!~weekIdx)
             return;
@@ -12937,6 +12937,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
         const term = (_d = termDic[semester]) !== null && _d !== void 0 ? _d : 0;
         // シラバスへのリンク
         liVal.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()('<a>')
+            .addClass('syllabus-link')
             .attr({
             href: 'https://j04-asw.osaka-sandai.ac.jp/uniasv2/AGA130.do?REQ_PRFR_MNU_ID=MSTD2005',
             /*前のURL'https://j29-asw.osaka-sandai.ac.jp/uniasv2/UnSSOLoginControlFree'*/ target: '_blank',
@@ -12947,7 +12948,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(() => {
                 syllabus: { period: periodNum, day: weekIdx, title, name: splitedName, term },
             });
         })[0]);
-        weekLs[periodNum][weekIdx].append(liVal)[0];
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(weekLs[periodNum][weekIdx]).append(...liVal);
     });
     // 時間割の作成
     const trLs = weekLs.map(row => jquery__WEBPACK_IMPORTED_MODULE_0___default()('<tr>').append(row)[0]);

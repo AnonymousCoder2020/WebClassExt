@@ -4,7 +4,7 @@ const InlineChunkHtmlPlugin = require('inline-chunk-html-plugin')
 
 const project = ['web-cls-ext'][0]
 //             0        1         2         3           4            5       6             7            8
-const page = ['index', 'dl_win', 'course', 'download', 'timetable', 'skip', 'answer_form', 'syllabus', 'syllabus_ls'][7]
+const page = ['index', 'dl_win', 'course', 'download', 'timetable', 'skip', 'answer_form', 'syllabus', 'syllabus_ls'][4]
 const ext = ['ts', 'js'][0]
 const html = 0
 
@@ -23,7 +23,7 @@ module.exports = {
   entry: `./src/${project}/${page}.${ext}`,
   output: {
     filename: `${page}.js`,
-    path: resolve(__dirname, `dist/${project}`),
+    path: resolve(__dirname, 'dist'),
   },
   module: {
     rules: [

@@ -30,11 +30,11 @@ $(() => {
     .forEach(li => {
       const { week, period, title, name, semester } =
         li.textContent?.match(
-          /» (?<week>[月火水木金土日])(?<period>\d)(?<semester>[前後]) (?<title>[^\d\s\/０-９]+)[\S]* [a-zA-Z]+ (?<name>(?:　|[^\d\s\/0-9０-９])+)/
+          /»[\s　](?<week>[月火水木金土日])(?<period>\d)(?<semester>[前後])[\s　](?<title>[^\d\s\/０-９]+)[\S]*[\s　][a-zA-Z]+[\s　](?<name>(?:　|[^\d\s\/0-9０-９])+)/
         )?.groups ?? {}
       const weekIdx = weeks.findIndex(w => w === week)
       if (!~weekIdx) return
-      const liVal = $(li).children('.course-data-box-normal').children().clone().get()
+      const liVal: (HTMLElement | string)[] = $(li).children('.course-data-box-normal').children().clone().get()
 
       // コースタイトルの全角英数字を半角に変換
       const $courceLink = $(liVal).find('a')
@@ -58,6 +58,7 @@ $(() => {
       // シラバスへのリンク
       liVal.push(
         $('<a>')
+          .addClass('syllabus-link')
           .attr({
             href: 'https://j04-asw.osaka-sandai.ac.jp/uniasv2/AGA130.do?REQ_PRFR_MNU_ID=MSTD2005',
             /*前のURL'https://j29-asw.osaka-sandai.ac.jp/uniasv2/UnSSOLoginControlFree'*/ target: '_blank',
@@ -70,7 +71,7 @@ $(() => {
           })[0]
       )
 
-      weekLs[periodNum][weekIdx].append(liVal)[0]
+      $(weekLs[periodNum][weekIdx]).append(...liVal)
     })
 
   // 時間割の作成
