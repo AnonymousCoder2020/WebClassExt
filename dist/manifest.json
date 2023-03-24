@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
   "name": "WebClass Ext",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "description": "WebClassの拡張",
   "content_scripts": [
+    { "matches": ["https://ed24lb.osaka-sandai.ac.jp/*"], "css": ["initial.css"], "all_frames": true },
     {
       "matches": [
         "https://ed24lb.osaka-sandai.ac.jp/webclass/",
@@ -12,14 +13,30 @@
       ],
       "js": ["index.js", "timetable.js"]
     },
-    { "matches": ["https://ed24lb.osaka-sandai.ac.jp/webclass/*_frame.php*"], "js": ["download.js"] },
+    {
+      "matches": [
+        "https://ed24lb.osaka-sandai.ac.jp/webclass/blank.html*",
+        "https://ed24lb.osaka-sandai.ac.jp/webclass/dqstn_answer.php*",
+        "https://ed24lb.osaka-sandai.ac.jp/webclass/mbl.php/questions*",
+        "https://ed24lb.osaka-sandai.ac.jp/webclass/txtbk_show_chapter.php*"
+      ],
+      "js": ["download.js"],
+      "all_frames": true
+    },
     { "matches": ["https://ed24lb.osaka-sandai.ac.jp/webclass/show_frame.php*"], "js": ["skip.js"] },
+    { "matches": ["https://ed24lb.osaka-sandai.ac.jp/webclass/course.php*"], "js": ["course.js"] },
     { "matches": ["https://j04-asw.osaka-sandai.ac.jp/uniasv2/AGA130.do*"], "js": ["syllabus.js"] },
     { "matches": ["https://j04-asw.osaka-sandai.ac.jp/uniasv2/AGA130PSC01EventAction.do*"], "js": ["syllabus_ls.js"] },
-    { "matches": ["https://ed24lb.osaka-sandai.ac.jp/webclass/course.php*"], "js": ["course.js"] }
+    { "matches": ["https://j04-asw.osaka-sandai.ac.jp/uniasv2/jsp/MessageDispOSU.jsp*"], "js": ["to_student_menu.js"] }
   ],
   "permissions": ["storage"],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self'"
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   }
 }

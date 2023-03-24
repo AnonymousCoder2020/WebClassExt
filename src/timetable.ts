@@ -1,6 +1,6 @@
 import $ from 'jquery'
-import { extWarn } from './extLog'
 import './timetable.css'
+import dayjs from 'dayjs'
 import { webClsExtBrowserStorage } from './storage_type'
 
 $(() => {
@@ -8,7 +8,7 @@ $(() => {
   const subjectTitleEl = $('.courseTree-levelTitle')
     .get()
     .find(el => ~$(el).text().indexOf('登録科目一覧'))
-  if (!subjectTitleEl) return extWarn(`登録科目一覧のタイトルを見つけられませんでした。`)
+  if (!subjectTitleEl) return console.warn('登録科目一覧のタイトルを見つけられませんでした。- WebClsExt')
 
   const subjectContainer = subjectTitleEl.parentElement
   subjectContainer && $('#courses_list_left').prepend(subjectContainer)
@@ -20,8 +20,14 @@ $(() => {
     .map(() => [
       ...Array(weeks.length)
         .fill(void 0)
-        .map(() => $('<td>')),
+        .map(() => $('<td>'))
     ])
+
+  // 年度を取得
+  const yearStr = $('select.form-control[name="year"]').val()
+  const isYearStr = typeof yearStr === 'string'
+  if (!isYearStr) console.warn('年度を見つけられませんでした。- WebClsExt')
+  const year = isYearStr ? parseInt(yearStr, 10) : dayjs().year()
 
   // 時間割情報を取得
   $container
@@ -49,10 +55,7 @@ $(() => {
 
       // シラバス用データをパース
       const splitedName = name.split(/\s|　/)
-      if (splitedName.length !== 2) {
-        extWarn('教授名が正常にパースされませんでした。')
-        return
-      }
+      if (splitedName.length !== 2) return console.warn('教授名が正常にパースされませんでした。- WebClsExt')
       const termDic = { 前: 1, 後: 2 }
       const term = termDic[semester as '前' | '後'] ?? 0
       // シラバスへのリンク
@@ -61,12 +64,12 @@ $(() => {
           .addClass('syllabus-link')
           .attr({
             href: 'https://j04-asw.osaka-sandai.ac.jp/uniasv2/AGA130.do?REQ_PRFR_MNU_ID=MSTD2005',
-            /*前のURL'https://j29-asw.osaka-sandai.ac.jp/uniasv2/UnSSOLoginControlFree'*/ target: '_blank',
+            /*前のURL'https://j29-asw.osaka-sandai.ac.jp/uniasv2/UnSSOLoginControlFree'*/ target: '_blank'
           })
           .text('シラバス')
           .on('click', () => {
             webClsExtBrowserStorage.set({
-              syllabus: { period: periodNum, day: weekIdx, title, name: splitedName as [string, string], term },
+              syllabus: { year, period: periodNum, day: weekIdx, title, name: splitedName as [string, string], term }
             })
           })[0]
       )

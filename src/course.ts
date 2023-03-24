@@ -20,23 +20,25 @@ $(() => {
       const $timeMsg = $('<div>').addClass('web-cls-ext_time-msg').css({ color: '#e31102', display: 'inline-block' })
       $timeMsg.appendTo($(el).closest('.cm-contentsList_contentDetailListItem'))
       let timer: NodeJS.Timer | undefined
+      //#bce8f1
       const timerUpdater = () => {
         const nowUnix = dayjs().unix()
-        const diffSec = endUnix - nowUnix
-        const isRange = startUnix < nowUnix && nowUnix < endUnix
-        const isPassed = diffSec < 0
-        if (isPassed || !isRange) {
+        //  now <-(+ toEndSec)-> end
+        const [toStartSec, toEndSec] = [startUnix, endUnix].map(sec => sec - nowUnix)
+        const isBefore = 0 < toStartSec
+        if (toEndSec < 0) {
           clearTimeout(timer)
           $timeMsg.remove() // 正常に動くかデバッグ
           return
         }
-        const show = conversion(Math.abs(diffSec), timeUnits)
+        const show = conversion(Math.abs(isBefore ? toStartSec : toEndSec), timeUnits)
           .map((unit, i) => unit + timeUnitShows[i])
           .reverse()
           .join('')
-        $timeMsg.text(`${show} 後〆`)
-        $timeMsg.css(diffSec < 604_800 ? { fontWeight: 'bold' } : { color: 'rgba(227, 17, 2, .5)' })
+        $timeMsg.text(`${show} 後${isBefore ? 'OPEN' : '〆'}`)
+        $timeMsg.css(!isBefore && toEndSec < 604_800 ? { fontWeight: 'bold' } : { color: isBefore ? '#bce8f1' : 'rgba(227, 17, 2, .5)' })
       }
+
       // 1秒ごとに表示を更新
       timerUpdater()
       timer = setInterval(timerUpdater, 1000)

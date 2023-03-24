@@ -1,20 +1,12 @@
 import $ from 'jquery'
 import { unescapeHTML, regularUrl } from '~/lib/util'
-import { extLog, extWarn } from './extLog'
+import { extWarn } from './extLog'
 import { jQueryUtil } from '~lib/jQueryUtil'
 
 jQueryUtil($)
 $(() => {
-  extLog('shortcut download')
-  const $frameDoc = $('frame[name="webclass_chapter"],frame[name="answer"]').frameDoc()
-  if (!$frameDoc[0]) return extLog('フレームが見つかりません。')
-  const completeLinkEls: HTMLElement[] = []
-  const dl = () => {
-    const $links = $frameDoc.find('a[target="download"]')
-    const links = $links.get()
-    console.log($links.get())
-    if (!$links[0] || links.every(link => completeLinkEls.some(el => link === el))) return
-    completeLinkEls.push(...links)
+  // frame要素ごとに実行
+  const dl = (links: HTMLElement[]) => {
     // クリックされたらダウンロード開始
     links.forEach(async link => {
       const $link = $(link)
@@ -31,7 +23,5 @@ $(() => {
       link.remove()
     })
   }
-  dl()
-  const observer = new MutationObserver(dl)
-  observer.observe($frameDoc[0], { attributes: false, childList: true, subtree: true })
+  dl($('a[target="download"]').get())
 })

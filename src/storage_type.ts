@@ -2,6 +2,7 @@ import { browserStorage } from '~lib/browser-storage-typed'
 
 export interface WebClsExtStorage {
   syllabus?: {
+    year: number
     day: number
     period: number
     title: string

@@ -6,7 +6,7 @@ extLog('syllabus')
 $(async () => {
   const { syllabus } = (await webClsExtBrowserStorage.get(['syllabus'])) as WebClsExtStorage
   if (!syllabus) return
-  const { day, period, title, name, term } = syllabus
+  const { year, day, period, title, name, term } = syllabus
 
   const $contents = $('#contents')
   const $inputs = $contents.find('.tablearea>.input>tbody tr')
@@ -26,6 +26,8 @@ $(async () => {
     return
   }
 
+  // 講義年度の入力
+  ;($('#selLsnOpcFcy')[0] as HTMLSelectElement).value = year + ''
   // 講義タイトルの入力
   const titleInput = $('input[type="text"][id^="txtSbj"]')[0] as HTMLInputElement
   titleInput.value = title
