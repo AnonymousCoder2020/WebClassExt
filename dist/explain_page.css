@@ -1,0 +1,13 @@
+#ContentInfo tr:nth-child(2) {
+  font-size: 1rem;
+  font-weight: bold;
+}
+ul.absoluteterms {
+  font-size: unset;
+  font-weight: normal;
+}
+ul.restrictterms li,
+ul.absoluteterms li.attention {
+  font-size: 2rem !important;
+  font-weight: normal;
+}

@@ -4,7 +4,7 @@ const InlineChunkHtmlPlugin = require('inline-chunk-html-plugin')
 
 const project = ['web-cls-ext'][0]
 //             0        1         2           3            4       5              6           7              8
-const page = ['index', 'course', 'download', 'timetable', 'skip', 'answer_form', 'syllabus', 'syllabus_ls', 'to_student_menu'][8]
+const page = ['index', 'course', 'download', 'timetable', 'skip', 'answer_form', 'syllabus', 'syllabus_ls', 'to_student_menu'][4]
 const ext = ['ts', 'js'][0]
 const html = 0
 
